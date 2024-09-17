@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Info Lookup</title>
+    
+</head>
+<body>
+
+    <h1>Country Information Lookup</h1>
+
+    <form id="countryForm">
+        <label for="country">Enter Country Name:</label>
+        <input type="text" id="country" name="country" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="result" class="result"></div>
+    <div id="error" class="error"></div>
+
+    <script>
+        // Function to fetch country data from the API
+        async function fetchCountryData(countryName) {
+            const apiUrl = `https://restcountries.com/v3.1/name/${countryName}`;
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error(`Country "${countryName}" not found`);
+                }
+                const data = await response.json();
+                return data[0];  // Return the first match from the array
+            } catch (error) {
+                throw new Error(error.message);
+            }
+        }
+
+        // Function to display country data on the page
+        function displayCountryData(country) {
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `
+                <h2>${country.name.common}</h2>
+                <p><strong>Capital:</strong> ${country.capital ? country.capital[0] : 'N/A'}</p>
+                <p><strong>Population:</strong> ${country.population.toLocaleString()}</p>
+                <p><strong>Region:</strong> ${country.region}</p>
+                <p><strong>Subregion:</strong> ${country.subregion}</p>
+                <p><strong>Languages:</strong> ${Object.values(country.languages).join(', ')}</p>
+                <img src="${country.flags.svg}" alt="Flag of ${country.name.common}" style="width: 150px; margin-top: 10px;">
+            `;
+        }
+
+        // Function to handle form submission
+        document.getElementById("countryForm").addEventListener("submit", async function(event) {
+            event.preventDefault(); // Prevent the form from reloading the page
+            const countryName = document.getElementById("country").value.trim();
+            const resultDiv = document.getElementById("result");
+            const errorDiv = document.getElementById("error");
+
+            resultDiv.innerHTML = "";  // Clear any previous result
+            errorDiv.innerHTML = "";   // Clear any previous error message
+
+            if (countryName === "") {
+                errorDiv.textContent = "Please enter a country name.";
+                return;
+            }
+
+            try {
+                const countryData = await fetchCountryData(countryName);
+                displayCountryData(countryData);
+            } catch (error) {
+                errorDiv.textContent = error.message;
+            }
+        });
+    </script>
+
+</body>
+</html>
