@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Input Dialog</title>
+    <script>
+        function sayHello()
+        { 
+            let inputElement = document.getElementById('name-input'); 
+            let name = inputElement.value; 
+            let outputElement = document.getElementById('name-output'); 
+            outputElement.innerText = 'Hello ' + name + '!'; 
+        }       
+    </script>
+  </head>
+
+  <body>
+    <label for="name-input">Enter your name</label> <br>
+    <input id="name-input"> <br>
+    <button onclick='sayHello();'>
+        Click me! 
+    </button>
+    <p id="name-otput"></p>
+  </body>
+</html>
