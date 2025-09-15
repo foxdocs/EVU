@@ -5,16 +5,19 @@
     <script>
       function updateParagraphText(){
         let labelElement = document.getElementById('label');
-        labelElement.innerText = 'You clicked the button!';
+        labelElement.innerText = 'Updated text: You just clicked the button!';
+        labelElement.style.color = 'green';
       }
     </script>
   </head>
   <body>
-    <p id="label">
-      Click the button.
-    </p>
     <button onclick="updateParagraphText();">
       Click me!
     </button>
+
+    <p id="label">
+      Original text: Click the button!
+    </p>
+    
   </body>
 </html>

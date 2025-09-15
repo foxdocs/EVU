@@ -15,15 +15,18 @@
   </head>
 
   <body>
-        <label for="cars">Choose a car:</label>
+        <label for="cars">Choose a car brand from the drop-down list below:</label> <br/>
         <select id="cars">
             <option value="Volvo">Volvo</option>
             <option value="Audi">Audi</option>
-            <option value="BMW">BMW</option>
+            <option value="BMW">Mercedes</option>
+            <option value="Mercedes">BMW</option>
         </select>
+
         <button onclick='carChoice();'>
-            Submit 
+            Submit
         </button>
+        
         <p id="car-output"></p>
     </body>
     

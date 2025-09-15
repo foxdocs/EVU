@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Button Actions</title>
+</head>
+<body>
+    <h4>My First JS Event Listener</h4>
+    <p>There will be two different responses of the interactive event:
+        <ul>
+            <li>On Click: a pop-up box appears</li>
+            <li>On MouseOver: a counter of event occurances updates - see it in the console</li>
+        </ul>
+    </p>
+    <!-- 
+        This code demonstrates a simple button action. 
+        The HTML button object gets id, which will be used for identifying an event associated with it. 
+        The function addEventListener() is used to make the button active. 
+        It gets two parameters: event and response.
+    -->
+
+<button id="myButton">Click me!</button>
+
+<script>
+    const button = document.getElementById('myButton');
+
+    button.addEventListener('click', function() {
+        alert('Button clicked!');
+    });
+
+    button.addEventListener('mouseover', function() {
+        console.log('Mouse over button!');
+    });
+</script>
+
+</body>
+</html>
