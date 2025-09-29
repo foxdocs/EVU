@@ -47,8 +47,8 @@
             try {
                 const countryData = await getData(countryName);
                 // here is the full JSON response
-                // document.body.innerHTML += "Here is the returned non-formatted JSON stream of characters: <br/>";
-                // document.body.innerHTML += JSON.stringify(countryData, null,'\t'); // whole JSON
+                document.body.innerHTML += "Here is the returned non-formatted JSON stream of characters: <br/>";
+                document.body.innerHTML += JSON.stringify(countryData, null,'\t'); // whole JSON
                 displayData(countryData);  // run function to display selected attributes only
             } catch (error) {
                 resultDiv.textContent = error.message;
